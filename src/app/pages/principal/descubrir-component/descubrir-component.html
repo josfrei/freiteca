@@ -1,0 +1,32 @@
+<section class="my-2 p-2">
+  <div class="divider divider-neutral py-10">
+    <h1 class="text-2xl font-black text-white">{{tituloComponente()}}</h1>
+  </div>
+
+  <div class="carousel w-full  grid grid-cols-1">
+    <div class="carousel-item relative w-8/12 mx-auto">
+
+      @for (elemento of elementos().slice(carrusel().inicio(), carrusel().inicio() + 4);track $index ) {
+
+      <!-- item recomendaciones-->
+        <div class="card bg-base-100 shadow-sm w-full cursor-pointer mx-2" [id]="elemento.id">
+          <figure class="shadow-2xl  mask-x-from-95% mask-x-to-99% mask-y-from-90% mask-y-to-99%">
+            <img [src]="elemento.backdrop_path ? 'https://image.tmdb.org/t/p/w500'+ elemento.backdrop_path: 'assets/img/no_photo.jpg'" [alt]="elemento.title" />
+          </figure>
+          <div class="card-body">
+            <!--<h2 class="text-l font-bold text-center">{{elemento.title || elemento.name | uppercase}} </h2>-->
+            <h2 class="text-l font-bold text-center">{{elemento.title | uppercase}} </h2>
+
+          </div>
+        </div>
+        <!-- fin item recomendaciones-->
+      }
+
+
+    </div>
+    <div class="mx-auto  py-2 my-2">
+      <button (click)="carrusel().movimiento()"
+        class="btn btn-outline border-white text-white  hover:text-black">{{textoBotonComponente()}}</button>
+    </div>
+  </div>
+</section>

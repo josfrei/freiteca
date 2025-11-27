@@ -1,0 +1,28 @@
+<h1 class="text-orange-50">BÚSQUEDA DE PELÍCULAS Y SERIES</h1>
+
+<section class="mt-5">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    @for (item of peliculasResources.value(); track $index) {
+
+    <div class="card bg-base-100 w-full md:w-80 lg:w-96 shadow-sm my-10 mx-10">
+      <figure class="px-7 pt-7 shadow-2xl  mask-x-from-95% mask-x-to-99% mask-y-from-90% mask-y-to-99%">
+        <div class="w-full aspect-2/3 overflow-hidden rounded-lg shadow-2xl">
+          <img
+            [src]="item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : 'assets/img/no_photo.jpg'"
+            [alt]="item.poster_path" class="w-full h-full object-cover" />
+        </div>
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">
+          {{item.title}}
+        </h2>
+        <div class="badge badge-outline">{{item.media_type | i18nSelect:descripcionTipo}}</div>
+        <div [class]="
+    item.vote_average > 8 ? 'badge badge-success' :
+    item.vote_average < 5 ? 'badge badge-error' : 'badge badge-info'
+  ">{{item.vote_average}} puntos de 10</div>
+      </div>
+    </div>
+    }
+  </div>
+</section>

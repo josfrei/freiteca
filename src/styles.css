@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+ @plugin "daisyui" {
+   themes: bumblebee --default, dracula --prefersdark;
+ }
+
+ body{
+  /*background-color: rgba(0, 0, 0);*/
+ /* background-image: linear-gradient(to bottom right, rgb(0, 23, 70), rgb(85, 85, 85));*/
+  background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(85, 85, 85));
+ }
+#logo_freiteca{
+filter:  drop-shadow(0 4px 7px rgb(46, 46, 46));
+}
+
+
+#img-hero-principal{
+  mask-image:
+  radial-gradient(circle, #000, transparent);
+}
