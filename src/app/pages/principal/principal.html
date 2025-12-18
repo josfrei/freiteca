@@ -1,32 +1,41 @@
 <section class="my-2 p-2">
 
-<div
-  class="hero h-10/12"
-  style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);"
-  id="img-hero-principal"
->
-  <div class="hero-overlay"></div>
-  <div class="hero-content text-neutral-content text-center">
-    <div class="max-w-md">
-      <h1 class="mb-5 text-5xl font-bold">¡Hola!</h1>
-      <p class="mb-5 text-xl text-white">
-        Aquí podrás buscar películas y series e informarte de todos los detalles que más te interesen y crear tus listas personalizadas.
-      </p>
+  <div class="hero h-10/12"
+    style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);"
+    id="img-hero-principal">
+    <div class="hero-overlay"></div>
+    <div class="hero-content text-neutral-content text-center">
+      <div class="max-w-md">
+        <div class="py-15">
+          <p class="mb-5 text-xl text-white">
+            Empieza a buscar <span class="text-rotate duration-4000">
+              <span>
+                <span class="text-xl">PELÍCULAS.</span>
+                <span class="text-xl">SERIES.</span>
+              </span>
+            </span>
+          </p>
+          <p class="mb-5 text-xl text-white">
+            Infórmate de todos los detalles que más te interesen y crea tus listas personalizadas.
+
+          </p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </section>
-<!-- Descubre películas -->
-<descubrir-component [elementos]="peliculas()" [elementoInicial]="peliculasCarrusel.inicio()"
-  [carrusel]="peliculasCarrusel" [tituloComponente]="'DESCUBRE PELÍCULAS'"
-  [textoBotonComponente]="'Descubrir más películas'" />
+<section>
+  <!-- Descubre películas -->
+  <descubrir-component [elementos]="peliculas()" [elementoInicial]="peliculasCarrusel.inicio()"
+    [carrusel]="peliculasCarrusel" [tituloComponente]="'DESCUBRE PELÍCULAS'"
+    [textoBotonComponente]="'Descubrir más películas'" [tipoComponente]="'movie'" />
 
   <!-- Descubre series -->
-<descubrir-component [elementos]="series()" [elementoInicial]="seriesCarrusel.inicio()"
-  [carrusel]="seriesCarrusel" [tituloComponente]="'DESCUBRE SERIES'"
-  [textoBotonComponente]="'Descubrir más series'" />
+  <descubrir-component [elementos]="series()" [elementoInicial]="seriesCarrusel.inicio()" [carrusel]="seriesCarrusel"
+    [tituloComponente]="'DESCUBRE SERIES'" [textoBotonComponente]="'Descubrir más series'" [tipoComponente]="'tv'" />
 
   <!-- Descubre recomendaciones -->
-<descubrir-component [elementos]="peliculas()" [elementoInicial]="peliculasCarrusel.inicio()"
-  [carrusel]="peliculasCarrusel" [tituloComponente]="'RECOMENDACIONES DE LA GENTE'"
-  [textoBotonComponente]="'Descubrir más recomendaciones'" />
+  <descubrir-component [elementos]="peliculas()" [elementoInicial]="peliculasCarrusel.inicio()"
+    [carrusel]="peliculasCarrusel" [tituloComponente]="'RECOMENDACIONES DE LA GENTE'"
+    [textoBotonComponente]="'Descubrir más recomendaciones'" [tipoComponente]="'movie'" />
+</section>

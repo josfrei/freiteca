@@ -1,14 +1,18 @@
 import { Component, effect, inject, input, linkedSignal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map, of } from 'rxjs';
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { BusquedaService } from '../../service/busqueda-service';
-import { I18nSelectPipe } from '@angular/common';
+import { DecimalPipe, I18nSelectPipe, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-busqueda-page',
   imports: [
         I18nSelectPipe,
+        DecimalPipe,
+        UpperCasePipe,
+        RouterLink
+
 ],
   templateUrl: './busqueda-page.html',
 })

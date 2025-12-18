@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
 
   {
-    path: 'principal',
+    path: '',
     title: 'Principal',
     loadComponent: () => import('./pages/principal/principal'),
   },
@@ -16,8 +16,16 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/busqueda-page/busqueda-page'),
   },
   {
+    path: 'info/:tipo/:id',
+    loadComponent: () => import('./pages/info-page/info-page'),
+  },
+  {
+    path: 'error404',
+    loadComponent: () => import('./pages/error-page/error-page'),
+  },
+  {
     path: '**',
-    redirectTo: 'principal',
+    redirectTo: 'error404',
   },
 
 

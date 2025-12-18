@@ -1,6 +1,11 @@
-<navbar />
+<div class="min-h-screen flex flex-col">
 
-<div class="w-11/12 text-alin mx-auto">
-  <router-outlet />
+  <navbar />
+
+  <main class="flex-1 w-11/12 mx-auto">
+    <router-outlet />
+  </main>
+
+  <footer_component />
+
 </div>
-<footer_component />

@@ -9,7 +9,7 @@
       @for (elemento of elementos().slice(carrusel().inicio(), carrusel().inicio() + 4);track $index ) {
 
       <!-- item recomendaciones-->
-        <div class="card bg-base-100 shadow-sm w-full cursor-pointer mx-2" [id]="elemento.id">
+        <div class="card bg-base-100 shadow-sm w-full cursor-pointer mx-2" [id]="elemento.id" [routerLink]="['/info',tipoComponente(), elemento.id ]">
           <figure class="shadow-2xl  mask-x-from-95% mask-x-to-99% mask-y-from-90% mask-y-to-99%">
             <img [src]="elemento.backdrop_path ? 'https://image.tmdb.org/t/p/w500'+ elemento.backdrop_path: 'assets/img/no_photo.jpg'" [alt]="elemento.title" />
           </figure>
