@@ -1,0 +1,38 @@
+<div class="card bg-base-100 shadow-sm my-10 flex flex-col md:flex-row">
+
+  <!-- Imagen -->
+  <figure class="shadow-2xl h-full my-auto mask-x-from-95% mask-x-to-99% mask-y-from-90% mask-y-to-99%">
+    <img
+      [src]="media()?.backdrop_path ? 'https://image.tmdb.org/t/p/w500'+ media()?.backdrop_path: 'assets/img/no_photo.jpg'"
+      [alt]="media()?.title" />
+  </figure>
+
+  <div class="card-body">
+    <!-- Sinopsis -->
+    <h2 class="text-secondary text-xl  my-5">SINOPSIS</h2>
+    <p>{{media()?.overview}}</p>
+
+    <!-- VOTACIÓN -->
+    <div class="flex">
+      <h2 class="text-secondary text-xl mr-2">PUNTUACIÓN</h2>
+      <div [class]="
+    media()!.vote_average > 8 ? 'badge badge-success' :
+    media()!.vote_average < 5 ? 'badge badge-error' : 'badge badge-info'
+  ">
+        {{media()?.vote_average | number: '1.1-1'}}
+      </div>
+    </div>
+
+    <div class="card-actions justify-center">
+      <!-- Géneros -->
+      <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
+        @for (item of media()?.genres; track $index) {
+        <div class="card-actions justify-center">
+          <div class="badge badge-outline mx-2">{{item}}</div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+</div>

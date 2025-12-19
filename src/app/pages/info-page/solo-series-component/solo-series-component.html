@@ -1,0 +1,65 @@
+@if (mediaParams() == 'tv') {
+
+<div class="text-center">
+  <!-- FECHA ESTRENO -->
+  <div class="stats shadow text-center">
+    <div class="stat">
+      <div class="stat-figure text-primary">
+      </div>
+      <div class="stat-value text-secondary">{{media()?.release_date | date}}</div>
+      <div class="text-primary">FECHA ESTRENO</div>
+    </div>
+
+    <!-- ÚLTIMA FECHA ESTRENO TEMPORADA -->
+    <div class="stat">
+      <div class="stat-figure text-secondary"> </div>
+      <div class="stat-value text-secondary">{{media()?.last_air_date | date}}</div>
+      <div class="text-primary">ÚLTIMO ESTRENO</div>
+      <div class="badge badge-outline badge-success m-auto">{{media()?.in_production + '' | i18nSelect:serieActivoMap}}
+      </div>
+
+    </div>
+
+    <!-- NÚMERO DE EPISODIOS -->
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+      </div>
+      <div class="stat-value text-secondary">{{media()?.number_of_episodes}}</div>
+      <div class="text-primary"> NÚMERO EPISODIOS</div>
+    </div>
+
+    <!-- NÚMERO DE TEMPORADAS -->
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+      </div>
+      <div class="stat-value text-secondary">{{media()?.number_of_seasons}}</div>
+      <div class="text-primary"> NÚMERO TEMPORADAS</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CADENAS -->
+<h2 class="text-secondary text-center my-5">CADENAS</h2>
+<div class=" flex">
+  @for (item of media()?.networks; track $index) {
+
+  <!-- item recomendaciones-->
+  <div class="card bg-base-100 shadow-sm w-full mx-2 py-5">
+    <figure class="shadow-2xl  mask-x-from-95% mask-x-to-99% mask-y-from-90% mask-y-to-99%">
+      <img class="w-auto h-20"
+        [src]="item.company_logo ? 'https://image.tmdb.org/t/p/w500'+ item.company_logo: 'assets/img/no_photo.jpg'"
+        [alt]="item.company_name" />
+    </figure>
+    <div class="card-body">
+      <!--<h2 class="text-l font-bold text-center">{{elemento.title || elemento.name | uppercase}} </h2>-->
+      <h2 class="text-l font-bold text-center">{{item.company_name| uppercase}} </h2>
+
+    </div>
+  </div>
+  <!-- fin item recomendaciones-->
+
+  }
+</div>
+
+}

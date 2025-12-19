@@ -7,130 +7,19 @@
 <p class="text-center text-white font-semibold">{{media?.tagline | uppercase}}</p>
 }
 
-
-<div class="card bg-base-100 shadow-sm my-10 flex flex-col md:flex-row">
-
-  <!-- Imagen -->
-  <figure class="shadow-2xl h-full my-auto mask-x-from-95% mask-x-to-99% mask-y-from-90% mask-y-to-99%">
-    <img
-      [src]="media?.backdrop_path ? 'https://image.tmdb.org/t/p/w500'+ media?.backdrop_path: 'assets/img/no_photo.jpg'"
-      [alt]="media?.title" />
-  </figure>
-
-  <div class="card-body">
-    <!-- Sinopsis -->
-    <h2 class="text-secondary text-xl  my-5">SINOPSIS</h2>
-    <p>{{media?.overview}}</p>
-
-    <!-- VOTACIÓN -->
-    <div class="flex">
-      <h2 class="text-secondary text-xl mr-2">PUNTUACIÓN</h2>
-      <div [class]="
-    media.vote_average > 8 ? 'badge badge-success' :
-    media.vote_average < 5 ? 'badge badge-error' : 'badge badge-info'
-  ">
-        {{media?.vote_average | number: '1.1-1'}}
-      </div>
-    </div>
-
-    <div class="card-actions justify-center">
-      <!-- Géneros -->
-      <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
-        @for (item of media?.genres; track $index) {
-        <div class="card-actions justify-center">
-          <div class="badge badge-outline mx-2">{{item}}</div>
-        </div>
-        }
-      </div>
-    </div>
-  </div>
-
-</div>
-
+<sinopsis-puntuacion-generos-component [media]="mediaResource.value()" />
 
 <!-- SOLO TV -->
-@if (mediaTipo == 'tv') {
-
-
-<div class="text-center">
-  <!-- FECHA ESTRENO -->
-  <div class="stats shadow text-center">
-    <div class="stat">
-      <div class="stat-figure text-primary">
-      </div>
-      <div class="stat-value text-secondary">{{media?.release_date | date}}</div>
-      <div class="text-primary">FECHA ESTRENO</div>
-    </div>
-
-    <!-- ÚLTIMA FECHA ESTRENO TEMPORADA -->
-    <div class="stat">
-      <div class="stat-figure text-secondary"> </div>
-      <div class="stat-value text-secondary">{{media?.last_air_date | date}}</div>
-      <div class="text-primary">ÚLTIMO ESTRENO</div>
-      <div class="badge badge-outline badge-success m-auto">{{media?.in_production + '' | i18nSelect:serieActivoMap}}
-      </div>
-
-    </div>
-
-    <!-- NÚMERO DE EPISODIOS -->
-    <div class="stat">
-      <div class="stat-figure text-secondary">
-      </div>
-      <div class="stat-value text-secondary">{{media?.number_of_episodes}}</div>
-      <div class="text-primary"> NÚMERO EPISODIOS</div>
-    </div>
-
-    <!-- NÚMERO DE TEMPORADAS -->
-    <div class="stat">
-      <div class="stat-figure text-secondary">
-      </div>
-      <div class="stat-value text-secondary">{{media?.number_of_seasons}}</div>
-      <div class="text-primary"> NÚMERO TEMPORADAS</div>
-    </div>
-
-  </div>
-</div>
-
-<!-- CADENAS -->
-<h2 class="text-secondary text-center my-5">CADENAS</h2>
-<div class=" flex">
-  @for (item of media?.networks; track $index) {
-
-  <!-- item recomendaciones-->
-  <div class="card bg-base-100 shadow-sm w-full mx-2 py-5">
-    <figure class="shadow-2xl  mask-x-from-95% mask-x-to-99% mask-y-from-90% mask-y-to-99%">
-      <img class="w-auto h-20"
-        [src]="item.company_logo ? 'https://image.tmdb.org/t/p/w500'+ item.company_logo: 'assets/img/no_photo.jpg'"
-        [alt]="item.company_name" />
-    </figure>
-    <div class="card-body">
-      <!--<h2 class="text-l font-bold text-center">{{elemento.title || elemento.name | uppercase}} </h2>-->
-      <h2 class="text-l font-bold text-center">{{item.company_name| uppercase}} </h2>
-
-    </div>
-  </div>
-  <!-- fin item recomendaciones-->
-
-  <!--
-<div>
-  <img class="w-20 h-auto"
-    [src]="item.company_logo? 'https://image.tmdb.org/t/p/w500'+ item.company_logo: 'assets/img/no_photo.jpg'"
-    [alt]="item.company_name" />
-</div>
-<p class="text-white">{{item.company_name}}</p>
--->
-  }
-</div>
-
-}
+<solo-series-component [media]="mediaResource.value()" [mediaParams]="mediaParams()?.tipo" />
 <!-- FIN SOLO TV-->
+
 
 <!-- COMPAÑIAS -->
 <h2 class="text-secondary text-center my-5">COMPAÑIAS</h2>
 <div class=" flex my-10">
   @for (item of media?.production_companies; track $index) {
 
-  <!-- item recomendaciones-->
+  <!-- item compañias-->
   <div class="card bg-base-100 shadow-sm w-full mx-2 py-5">
     <figure class="shadow-2xl  mask-x-from-95% mask-x-to-99% mask-y-from-90% mask-y-to-99%">
       <img class="w-auto h-20"
@@ -138,21 +27,12 @@
         [alt]="item.company_name" />
     </figure>
     <div class="card-body">
-      <!--<h2 class="text-l font-bold text-center">{{elemento.title || elemento.name | uppercase}} </h2>-->
       <h2 class="text-l font-bold text-center">{{item.company_name| uppercase}} </h2>
 
     </div>
   </div>
-  <!-- fin item recomendaciones-->
+  <!-- fin item compañias-->
 
-  <!--
-  <div class="grid grid-cols-1 mx-auto">
-    <img class="w-20 h-auto"
-      [src]="item.company_logo? 'https://image.tmdb.org/t/p/w500'+ item.company_logo: 'assets/img/no_photo.jpg'"
-      [alt]="item.company_name" />
-    <p class="text-white">{{item.company_name}}</p>
-  </div>
--->
   }
 </div>
 
@@ -174,67 +54,55 @@
         <div class="text-xs uppercase opacity-60 text-white font-semibold">{{item.cast_character}}</div>
       </div>
     </li>
-
-
   </ul>
 
   }
 </details>
 
-
-<!-- PALABRAS CLAVE -->
- <!--
-@if (media?.keywords?.length) {
-
-<h2 class="text-secondary text-center my-5">PALABRAS CLAVE</h2>
-
-
-<div class="card-actions justify-center">
-  <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
-    @for (item of media?.keywords; track $index) {
-
-    <div class="card-actions justify-center">
-      <div class="badge badge-outline text-white mx-2">{{item.keywords}}</div>
-    </div>
-    }
-
-  </div>
-</div>
-
-}
--->
-
 <!-- VÍDEO -->
+ <!--
 <h2 class="text-secondary text-center my-5">VÍDEOS</h2>
 @for (item of media?.videos; track $index) {
 <p class="text-white">{{item.video_title}}</p>
 }
+-->
 
-
-<!-- PÓSTERS -->
+<!-- POSTERS -->
 @if (media?.images?.length) {
 <h2 class="text-secondary text-center my-5">PÓSTERS</h2>
-<div class="card bg-base-100 shadow-sm w-full mx-2 py-5">
+<div class="flex my-10">
 
   @for (item of media?.images; track $index) {
-  <figure>
-    <img
-      [src]="item.images_file_path ? 'https://image.tmdb.org/t/p/w500'+ item.images_file_path: 'assets/img/no_photo.jpg'"
-      [alt]="media?.title" />
-  </figure>
+  <div class="card shadow-sm w-full mx-2 py-0.5">
+    <figure>
+
+      <a [href]="item.images_file_path
+    ? 'https://image.tmdb.org/t/p/original' + item.images_file_path
+    : 'assets/img/no_photo.jpg'" target="_blank" rel="noopener noreferrer">
+
+        <img class="w-auto h-50 cursor-pointer hover:scale-105 transition-transform" [src]="item.images_file_path
+      ? 'https://image.tmdb.org/t/p/w500' + item.images_file_path
+      : 'assets/img/no_photo.jpg'" [alt]="media?.title" />
+
+      </a>
+
+    </figure>
+  </div>
   }
+
 </div>
 }
 
 <!-- RECOMENDACIONES SIMILARES -->
 <h2 class="text-secondary text-center my-5">RECOMENDACIONES SIMILARES</h2>
 
-
 <div class="carousel w-full  grid grid-cols-1">
+
   <div class="carousel-item relative w-8/12 mx-auto">
     @for (item of media?.recommendations; track $index) {
+
     <!-- item recomendaciones-->
-    <div class="card bg-base-100 shadow-sm w-full cursor-pointer mx-2" [id]="item.recommendation_id"
+    <div class="card bg-base-100 shadow-sm w-full cursor-pointer mx-2 my-5 hover:scale-105 transition-transform" [id]="item.recommendation_id"
       [routerLink]="['/info', item.recommendation_type,item.recommendation_id]">
       <figure class="shadow-2xl  mask-x-from-95% mask-x-to-99% mask-y-from-90% mask-y-to-99%">
         <img
@@ -242,7 +110,6 @@
           [alt]="item.recommendation_title" />
       </figure>
       <div class="card-body">
-        <!--<h2 class="text-l font-bold text-center">{{elemento.title || elemento.name | uppercase}} </h2>-->
         <h2 class="text-l font-bold text-center">{{item.recommendation_title| uppercase}} </h2>
 
       </div>
@@ -250,6 +117,7 @@
     <!-- fin item recomendaciones-->
 
     }
+
   </div>
 </div>
 }
